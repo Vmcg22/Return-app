@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Models;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -13,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('layouts.products.index');
+        //$products = DB::table('products')->get();
+        $products = Product::all();
+        return view('layouts.products.index', compact('products'));
     }
 
     /**
