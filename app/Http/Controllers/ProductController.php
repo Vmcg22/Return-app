@@ -38,7 +38,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return response()->json($request);
+        //Minuto 21:55
+        //Product::create($request->all());
+        $producto = new Product();
+        $producto->name = "Product From ".$request->name;
+        $producto->quantity = $request->quantity;
+        $producto->unit_price = $request->unit_price;
+        $producto->description = $request->description;
+        $producto->total_cost = $producto->quantity * $producto->unit_price;
+
+        $producto->save();
+                
+
+        return redirect()->route('products.index');
     }
 
     /**
