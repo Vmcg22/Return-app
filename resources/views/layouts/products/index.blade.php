@@ -10,11 +10,17 @@
 @endsection
 
 @section('contenido')
+
+    @include('layouts.products.modals.create')
+    @include('layouts.products.modals.delete')
+    @include('layouts.products.modals.update')
+
     <div class="card">
         <div class="card-body">
-            <table id="dt-products" class="table table-striped table-bordered">
+            <table id="dt-products" class="table table-striped table-bordered dts">
                 <thead>
                     <tr>
+                        
                         <th class="text-center"> Nombre </th>
                         <th class="text-center"> Descripción </th>
                         <th class="text-center"> Precio Unitario </th>
@@ -33,8 +39,13 @@
                             <td> {{$product->quantity}} </td>
                             <td> ${{$product->total_cost}} </td>
                             <td> 
-                                <button type="button" class="btn btn-primary">Ver</button> 
-                                <button type="button" class="btn btn-success">Detalles</button> 
+                                <a href="" class="edit-form-data" data-toggle="modal" data-target="#editarMdl">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                                <a href="" class="delete-form-data" data-toggle="modal" data-target="#eliminarMdl">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

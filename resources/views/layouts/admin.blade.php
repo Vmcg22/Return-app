@@ -33,7 +33,7 @@
     <div id="wrapper">
 
         <!-- Start Sidebar -->
-            @include("layouts.partials.sidebar");
+            @include("layouts.partials.sidebar")
         <!-- End Sidebar -->
 
         <!-- Content Wrapper -->
