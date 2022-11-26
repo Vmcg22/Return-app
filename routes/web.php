@@ -21,10 +21,12 @@ Route::get('/', function () {
 
 
 
-Route::get('/panel-administrativo', [HomeController::class, 'index'])->name(name: 'home');
+
+
 
 
 Route::resource('/products', ProductController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/panel-administrativo', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
