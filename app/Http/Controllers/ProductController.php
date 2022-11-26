@@ -39,9 +39,6 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        //return response()->json($request);
-        //Minuto 21:55
-        //Product::create($request->all());
         $producto = new Product();
         $producto->name = "Product From ".$request->name;
         $producto->quantity = $request->quantity;
@@ -50,9 +47,11 @@ class ProductController extends Controller
         $producto->total_cost = $producto->quantity * $producto->unit_price;
 
         $producto->save();
-                
 
-
+        /*Para que no de error Sweet Alert deben corre los comandos 
+            php artisan sweetalert:publish
+            composer require realrashid/sweet-alert
+        */
         alert()->success('Producto guardado correctamente');
 
         return redirect()->route('products.index');
