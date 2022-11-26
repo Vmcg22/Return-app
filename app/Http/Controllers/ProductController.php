@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\ProductRequest;
 use App\Models\Models;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Alert;
 
 class ProductController extends Controller
 {
@@ -36,7 +37,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         //return response()->json($request);
         //Minuto 21:55
@@ -50,6 +51,9 @@ class ProductController extends Controller
 
         $producto->save();
                 
+
+
+        alert()->success('Producto guardado correctamente');
 
         return redirect()->route('products.index');
     }
