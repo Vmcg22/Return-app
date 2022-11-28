@@ -24,7 +24,7 @@ class Customer extends Model
             "phone_number",
             "phone_number_secondary",
             "type",
-            "credit_limit",
-            
+            "credit_limit"
+
         ];
 }
