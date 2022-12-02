@@ -36,7 +36,24 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = new Customer();
+
+        $customer->contact = $request->contact;
+        $customer->city = $request->city;
+        $customer->state = $request->state;
+        $customer->zip = $request->zip;
+        $customer->address = $request->address;
+        $customer->phone_number = $request->phone_number;
+        $customer->type = $request->type;
+        $customer->credit_limit = $request->credit_limit;
+        $customer->active = true;
+
+       $customer->save(); 
+
+       alert()->success('Cliente guardado correctamente');
+
+       return redirect()->route('customers.index');
+        return response()->json($request);
     }
 
     /**
