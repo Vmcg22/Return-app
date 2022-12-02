@@ -3,7 +3,7 @@
 @section('titulo')
     <span> Customers </span>
     
-    <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
+    <a href=" {{url('/customers/create')}} " class="btn btn-primary btn-circle" >
         <i class="fas fa-plus"></i>
     </a>
 
