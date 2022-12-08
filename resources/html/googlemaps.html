@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps JavaScript API with Places Library Autocomplete Address Field</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Google Maps JavaScript library -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDcL8shIV5zZH3XYA1H6CjoH9MFUnzBD7s"></script>
+        
+
+    <style>
+        #search_input {
+            font-size: 18px;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+            margin-top: 50px;
+        }
+
+        .form-group label {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .form-group input:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                <h1>Google Maps JavaScript API with Places Library Autocomplete Address Field</h1>
+                </p>
+                <!-- Autocomplete location search input -->
+                <div class="form-group">
+                    <label>Location:</label>
+                    <input type="text" class="form-control" id="search_input" placeholder="Type address..." />
+                </div>
+            </div>
+
+            <div id="map">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        class DireccionGoogleMap {
+            constructor(numero_casa, calle, colonia, ciudad, estado, pais, zip, latitud, longitud, direccion_completa) {
+                this.numero_casa = numero_casa;
+                this.calle = calle;
+                this.colonia = colonia;
+                this.ciudad = ciudad;
+                this.estado = estado;
+                this.pais = pais;
+                this.zip = zip;
+                this.latitud = latitud;
+                this.longitud = longitud;
+                this.direccion_completa = direccion_completa;
+            }
+            // Getter
+            get NumeroCasa() {
+                return this.numero_casa();
+            }
+            // Método
+
+        }
+
+        //var direccionMaps = new DireccionGoogleMap(7242, "contadores", "solidaridad", "nuevo laredo", "tamaulipas", "mexico", "88143", 27.502175, -99.55069, "C. Contadores 7242, Solidaridad 1, 88143 Nuevo Laredo, Tamps., México");
+
+        //console.log(direccionMaps);
+
+        var searchInput = 'search_input';
+
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode'],
+                /*componentRestrictions: {
+                country: "USA"
+                }*/
+            });
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+
+                //var direccionMaps = new DireccionGoogleMap(7242, "contadores", "solidaridad", "nuevo laredo", "tamaulipas", "mexico", "88143", 27.502175, -99.55069, "C. Contadores 7242, Solidaridad 1, 88143 Nuevo Laredo, Tamps., México");
+                var numero_casa = near_place["address_components"][0]["short_name"];
+                var calle = near_place["address_components"][1]["short_name"];
+                var colonia = near_place["address_components"][2]["short_name"];
+                var ciudad = near_place["address_components"][3]["short_name"];
+                var estado = near_place["address_components"][4]["short_name"];
+                var pais = near_place["address_components"][5]["short_name"];
+                var zip = near_place["address_components"][6]["short_name"];
+                var latitud = near_place["geometry"]["viewport"]["Ia"]["hi"];
+                var longitud = near_place["geometry"]["viewport"]["Wa"]["hi"];
+
+                var direccionMaps = new DireccionGoogleMap(numero_casa, calle, colonia, ciudad, estado, pais, zip, latitud, longitud, "C. Contadores 7242, Solidaridad 1, 88143 Nuevo Laredo, Tamps., México");
+                
+                //console.log(longitud);
+                console.log(near_place);
+                console.log(direccionMaps);
+                //console.log(JSON.stringify(near_place));
+            });
+        });
+    </script>
+</body>
+
+</html>

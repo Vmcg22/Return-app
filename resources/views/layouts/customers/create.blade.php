@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="validationCustom02">Address</label>
-                <input type="text" class="form-control" id="address" name="address" placeholder="Ingresa la Dirección"
+                <input type="text" class="form-control" id="email" name="email" placeholder="Ingresa el Correo Electrónico"
                     required>
                 <div class="valid-feedback">
                     Looks good!
@@ -64,24 +64,18 @@
                 </div>
             </div>
 
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> Radio
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="options" id="option3" autocomplete="off"> Radio
-                </label>
-            </div>
-
-            <div class="btn-group btn-group" >
-                <label class="btn btn-secondary active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
-                </label>
-
-            </div>
+            <div class="col-md-3 mb-3">
+                <label>GeoLocation:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked="checked" id="addressCorrect" name="addressCorrect" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        ¿La dirección es correcta?
+                    </label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
+                </div>
+            </div>      
 
             <div id="map">
 
@@ -200,6 +194,30 @@
                 map: map
             });
         }
+
+        function on(){
+            console.log("Confirmé la dirección de Google Maps");
+          }
+          
+          function off(){
+            console.log("Limpio los campos que relleno con el API de Google Maps");
+          }
+          
+          var checkbox = document.getElementById('addressCorrect');
+          
+          checkbox.addEventListener("change", comprueba, false);
+          
+          function comprueba(){
+            if(checkbox.checked){
+                on();
+            }else{
+               off();
+            }
+          }
+
+        /*
+            FUNCIONES GOOGLE MAPS
+        */
 
         var searchInput = 'search_input';
 
