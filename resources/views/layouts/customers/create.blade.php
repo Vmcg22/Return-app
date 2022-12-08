@@ -67,7 +67,7 @@
             <div class="col-md-3 mb-3">
                 <label>GeoLocation:</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" checked="checked" id="addressCorrect" name="addressCorrect" required>
+                    <input class="form-check-input" type="checkbox" id="addressCorrect" name="addressCorrect" required>
                     <label class="form-check-label" for="invalidCheck">
                         ¿La dirección es correcta?
                     </label>
@@ -84,26 +84,74 @@
         <br>
 
         <div class="form-row">
-            <div class="col-md-6 mb-3">
+            
+            <div class="col-md-3 mb-3">
+                <label for="validationCustom03">Address</label>
+                <input type="text" class="form-control" id="addressGoogleMaps" name="addressGoogleMaps" placeholder="Ingresa la Ciudad"
+                    required readonly>
+                <div class="invalid-feedback">
+                    Please provide a valid address.
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationCustom03">Número</label>
+                <input type="text" class="form-control" id="numberGoogleMaps" name="numberGoogleMaps" placeholder=""
+                    required readonly>
+                <div class="invalid-feedback">
+                    Please provide a valid address.
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label for="validationCustom03">Colonia</label>
+                <input type="text" class="form-control" id="colonyGoogleMaps" name="colonyGoogleMaps" placeholder="Ingresa la Colonia"
+                    required readonly>
+                <div class="invalid-feedback">
+                    Please provide a valid colony.
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label for="validationCustom05">Zip</label>
+                <input type="text" class="form-control" id="zipGoogleMaps" name="zipGoogleMaps"
+                    placeholder="Ingresa el Código Postal" required readonly>
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+
+            <div class="col-md-3 mb-3">
                 <label for="validationCustom03">City</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="Ingresa la Ciudad"
-                    required>
+                <input type="text" class="form-control" id="cityGoogleMaps" name="cityGoogleMaps" placeholder="Ingresa la Ciudad"
+                    required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid city.
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom04">State</label>
-                <input type="text" class="form-control" id="state" name="state" placeholder="Ingresa el Estado"
-                    required>
+                <input type="text" class="form-control" id="stateGoogleMaps" name="stateGoogleMaps" placeholder="Ingresa el Estado"
+                    required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid state.
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
-                <label for="validationCustom05">Zip</label>
-                <input type="text" class="form-control" id="zip" name="zip"
-                    placeholder="Ingresa el Código Postal" required>
+            <div class="col-md-2 mb-3">
+                <label for="validationCustom05">País</label>
+                <input type="text" class="form-control" id="countryGoogleMaps" name="countryGoogleMaps"
+                    placeholder="Ingresa el País" required readonly>
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom05">Coordenadas Geográficas (Lat,Long)</label>
+                <input type="text" class="form-control" id="geoCoordGoogleMaps" name="geoCoordGoogleMaps"
+                    placeholder="27.5048 , -99.5479" required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid zip.
                 </div>
@@ -173,8 +221,8 @@
                 this.direccion_completa = direccion_completa;
             }
             // Getter
-            get NumeroCasa() {
-                return this.numero_casa();
+            get Calle() {
+                return this.calle();
             }
             // Método
 
@@ -197,6 +245,16 @@
 
         function on(){
             console.log("Confirmé la dirección de Google Maps");
+            console.log(direccionMaps.colonia);
+
+            document.getElementById("addressGoogleMaps").value = direccionMaps.calle;
+            document.getElementById("numberGoogleMaps").value = direccionMaps.numero_casa;
+            document.getElementById("colonyGoogleMaps").value = direccionMaps.colonia;
+            document.getElementById("zipGoogleMaps").value = direccionMaps.zip;
+            document.getElementById("cityGoogleMaps").value = direccionMaps.ciudad;
+            document.getElementById("stateGoogleMaps").value = direccionMaps.estado;
+            document.getElementById("countryGoogleMaps").value = direccionMaps.pais;
+            document.getElementById("geoCoordGoogleMaps").value = direccionMaps.latitud + "," +direccionMaps.longitud;
           }
           
           function off(){
@@ -220,6 +278,7 @@
         */
 
         var searchInput = 'search_input';
+        var direccionMaps;
 
         $(document).ready(function() {
             var autocomplete;
@@ -244,7 +303,7 @@
                 var longitud = near_place["geometry"]["viewport"]["Ia"]["hi"];
                 var latitud = near_place["geometry"]["viewport"]["Wa"]["hi"];
 
-                var direccionMaps = new DireccionGoogleMap(numero_casa, calle, colonia, ciudad, estado,
+                direccionMaps = new DireccionGoogleMap(numero_casa, calle, colonia, ciudad, estado,
                     pais, zip, latitud, longitud,
                     "C. Contadores 7242, Solidaridad 1, 88143 Nuevo Laredo, Tamps., México");
                 iniciarMap(27.5048394802915, -99.5479864197085);
