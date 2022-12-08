@@ -11,14 +11,13 @@
 @section('contenido')
     @include('layouts.products.modals.create')
 
-    <h3>Vista para dar de alta Clientes</h3>
-
-    <form class="needs-validation" novalidate action="{{url('/customers')}}" method="POST">
-      @csrf
+    <form class="needs-validation" novalidate action="{{ url('/customers') }}" method="POST">
+        @csrf
         <div class="form-row">
             <div class="col-md-3 mb-3">
                 <label for="validationCustom01">Contact</label>
-                <input type="text" class="form-control" id="contact" name="contact" placeholder="Ingresa el Nombre" required>
+                <input type="text" class="form-control" id="contact" name="contact" placeholder="Ingresa el Nombre"
+                    required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -57,24 +56,60 @@
         </div>
 
         <div class="form-row">
+            <div class="col-md-9 mb-3">
+                <label>GeoLocation:</label>
+                <input type="text" class="form-control" id="search_input" placeholder="Type address..." />
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+                </label>
+            </div>
+
+            <div class="btn-group btn-group" >
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+                </label>
+
+            </div>
+
+            <div id="map">
+
+            </div>
+        </div>
+        <br>
+
+        <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="validationCustom03">City</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="Ingresa la Ciudad" required>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Ingresa la Ciudad"
+                    required>
                 <div class="invalid-feedback">
                     Please provide a valid city.
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom04">State</label>
-                <input type="text" class="form-control" id="state" name="state" placeholder="Ingresa el Estado" required>
+                <input type="text" class="form-control" id="state" name="state" placeholder="Ingresa el Estado"
+                    required>
                 <div class="invalid-feedback">
                     Please provide a valid state.
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom05">Zip</label>
-                <input type="text" class="form-control" id="zip" name="zip" placeholder="Ingresa el Código Postal"
-                    required>
+                <input type="text" class="form-control" id="zip" name="zip"
+                    placeholder="Ingresa el Código Postal" required>
                 <div class="invalid-feedback">
                     Please provide a valid zip.
                 </div>
@@ -94,8 +129,8 @@
 
             <div class="col-md-6 mb-3">
                 <label for="validationCustom02">Credit Limit</label>
-                <input type="text" class="form-control" id="credit_limit" name="credit_limit" placeholder="Ingresa el Crédito Límite"
-                    required>
+                <input type="text" class="form-control" id="credit_limit" name="credit_limit"
+                    placeholder="Ingresa el Crédito Límite" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -103,18 +138,18 @@
         </div>
 
         <!---
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" checked="checked" id="active" name="active" required>
-                <label class="form-check-label" for="invalidCheck">
-                    ¿Estará Activo?
-                </label>
-                <div class="invalid-feedback">
-                    You must agree before submitting.
-                </div>
-            </div>
-        </div>
-        --->
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" checked="checked" id="active" name="active" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                        ¿Estará Activo?
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree before submitting.
+                                    </div>
+                                </div>
+                            </div>
+                            --->
 
         <button class="btn btn-primary" type="submit">Guardar Datos</button>
     </form>
@@ -128,6 +163,84 @@
 @push('scripts')
     <script src=" {{ asset('libs/datatables/jquery.dataTables.min.js') }} "></script>
     <script src=" {{ asset('libs/datatables/dataTables.bootstrap4.min.js') }} "></script>
+
+    <script>
+        class DireccionGoogleMap {
+            constructor(numero_casa, calle, colonia, ciudad, estado, pais, zip, latitud, longitud, direccion_completa) {
+                this.numero_casa = numero_casa;
+                this.calle = calle;
+                this.colonia = colonia;
+                this.ciudad = ciudad;
+                this.estado = estado;
+                this.pais = pais;
+                this.zip = zip;
+                this.latitud = latitud;
+                this.longitud = longitud;
+                this.direccion_completa = direccion_completa;
+            }
+            // Getter
+            get NumeroCasa() {
+                return this.numero_casa();
+            }
+            // Método
+
+        }
+
+        function iniciarMap(latitud, longitud) {
+            var coord = {
+                lat: latitud,
+                lng: longitud
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: coord
+            });
+            var marker = new google.maps.Marker({
+                position: coord,
+                map: map
+            });
+        }
+
+        var searchInput = 'search_input';
+
+        $(document).ready(function() {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode'],
+                /*componentRestrictions: {
+                country: "USA"
+                }*/
+            });
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var near_place = autocomplete.getPlace();
+
+                //var direccionMaps = new DireccionGoogleMap(7242, "contadores", "solidaridad", "nuevo laredo", "tamaulipas", "mexico", "88143", 27.502175, -99.55069, "C. Contadores 7242, Solidaridad 1, 88143 Nuevo Laredo, Tamps., México");
+                var numero_casa = near_place["address_components"][0]["short_name"];
+                var calle = near_place["address_components"][1]["short_name"];
+                var colonia = near_place["address_components"][2]["short_name"];
+                var ciudad = near_place["address_components"][3]["short_name"];
+                var estado = near_place["address_components"][4]["short_name"];
+                var pais = near_place["address_components"][5]["short_name"];
+                var zip = near_place["address_components"][6]["short_name"];
+                var longitud = near_place["geometry"]["viewport"]["Ia"]["hi"];
+                var latitud = near_place["geometry"]["viewport"]["Wa"]["hi"];
+
+                var direccionMaps = new DireccionGoogleMap(numero_casa, calle, colonia, ciudad, estado,
+                    pais, zip, latitud, longitud,
+                    "C. Contadores 7242, Solidaridad 1, 88143 Nuevo Laredo, Tamps., México");
+                iniciarMap(27.5048394802915, -99.5479864197085);
+                //iniciarMap(direccionMaps.latitud, direccionMaps.longitud);
+                console.log(near_place);
+                console.log(direccionMaps);
+                //console.log(JSON.stringify(near_place));
+            });
+        });
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDcL8shIV5zZH3XYA1H6CjoH9MFUnzBD7s&callback=iniciarMap">
+    </script>
 
     @if (!$errors->isEmpty())
         @if ($errors->has('post'))

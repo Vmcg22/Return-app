@@ -21,6 +21,7 @@
     <!-- Custom styles for this template-->
     <link href=" {{ asset('libs/sbadmin/css/sb-admin-2.min.css') }} " rel="stylesheet">
 
+
     @stack('styles')
 
     <link rel="stylesheet" href=" {{asset('/css/main.css')}} ">
