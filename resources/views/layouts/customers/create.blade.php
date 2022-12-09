@@ -16,7 +16,7 @@
         <div class="form-row">
             <div class="col-md-3 mb-3">
                 <label for="validationCustom01">Contact</label>
-                <input type="text" class="form-control" id="contact" name="contact" placeholder="Ingresa el Nombre"
+                <input type="text" class="form-control" id="contact" name="contact" placeholder="Ingresa el Nombre..."
                     required>
                 <div class="valid-feedback">
                     Looks good!
@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="validationCustom02">Address</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Ingresa el Correo Electrónico"
+                <input type="text" class="form-control" id="email" name="email" placeholder="Ingresa el Correo Electrónico..."
                     required>
                 <div class="valid-feedback">
                     Looks good!
@@ -48,7 +48,7 @@
             <div class="col-md-3 mb-3">
                 <label for="validationCustom02">Phone Nummber</label>
                 <input type="text" class="form-control" id="phone_number" name="phone_number"
-                    placeholder="Ingresa el Número de Teléfono" required>
+                    placeholder="Ingresa el Número de Teléfono..." required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -87,7 +87,7 @@
             
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">Address</label>
-                <input type="text" class="form-control" id="addressGoogleMaps" name="addressGoogleMaps" placeholder="Ingresa la Ciudad"
+                <input type="text" class="form-control" id="addressGoogleMaps" name="addressGoogleMaps" placeholder="Calle Geolocalización..."
                     required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid address.
@@ -95,7 +95,7 @@
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">Número</label>
-                <input type="text" class="form-control" id="numberGoogleMaps" name="numberGoogleMaps" placeholder=""
+                <input type="text" class="form-control" id="numberGoogleMaps" name="numberGoogleMaps" placeholder="Número Geolocalización..."
                     required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid address.
@@ -104,7 +104,7 @@
 
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">Colonia</label>
-                <input type="text" class="form-control" id="colonyGoogleMaps" name="colonyGoogleMaps" placeholder="Ingresa la Colonia"
+                <input type="text" class="form-control" id="colonyGoogleMaps" name="colonyGoogleMaps" placeholder="Colonia Geolocalización..."
                     required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid colony.
@@ -114,7 +114,7 @@
             <div class="col-md-3 mb-3">
                 <label for="validationCustom05">Zip</label>
                 <input type="text" class="form-control" id="zipGoogleMaps" name="zipGoogleMaps"
-                    placeholder="Ingresa el Código Postal" required readonly>
+                    placeholder="ZIP Geolocalización..." required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid zip.
                 </div>
@@ -125,7 +125,7 @@
 
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">City</label>
-                <input type="text" class="form-control" id="cityGoogleMaps" name="cityGoogleMaps" placeholder="Ingresa la Ciudad"
+                <input type="text" class="form-control" id="cityGoogleMaps" name="cityGoogleMaps" placeholder="Ciudad Geolocalización..."
                     required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid city.
@@ -133,7 +133,7 @@
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom04">State</label>
-                <input type="text" class="form-control" id="stateGoogleMaps" name="stateGoogleMaps" placeholder="Ingresa el Estado"
+                <input type="text" class="form-control" id="stateGoogleMaps" name="stateGoogleMaps" placeholder="Estado Geolocalización..."
                     required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid state.
@@ -142,7 +142,7 @@
             <div class="col-md-2 mb-3">
                 <label for="validationCustom05">País</label>
                 <input type="text" class="form-control" id="countryGoogleMaps" name="countryGoogleMaps"
-                    placeholder="Ingresa el País" required readonly>
+                    placeholder="País Geolocalización..." required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid zip.
                 </div>
@@ -151,7 +151,7 @@
             <div class="col-md-4 mb-3">
                 <label for="validationCustom05">Coordenadas Geográficas (Lat,Long)</label>
                 <input type="text" class="form-control" id="geoCoordGoogleMaps" name="geoCoordGoogleMaps"
-                    placeholder="27.5048 , -99.5479" required readonly>
+                    placeholder="Coordenadas Geolocalización" required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid zip.
                 </div>
@@ -254,11 +254,20 @@
             document.getElementById("cityGoogleMaps").value = direccionMaps.ciudad;
             document.getElementById("stateGoogleMaps").value = direccionMaps.estado;
             document.getElementById("countryGoogleMaps").value = direccionMaps.pais;
-            document.getElementById("geoCoordGoogleMaps").value = direccionMaps.latitud + "," +direccionMaps.longitud;
+            document.getElementById("geoCoordGoogleMaps").value = direccionMaps.latitud + ", " +direccionMaps.longitud;
           }
           
           function off(){
             console.log("Limpio los campos que relleno con el API de Google Maps");
+
+            document.getElementById("addressGoogleMaps").value = "";
+            document.getElementById("numberGoogleMaps").value = "";
+            document.getElementById("colonyGoogleMaps").value = "";
+            document.getElementById("zipGoogleMaps").value = "";
+            document.getElementById("cityGoogleMaps").value = "";
+            document.getElementById("stateGoogleMaps").value = "";
+            document.getElementById("countryGoogleMaps").value = "";
+            document.getElementById("geoCoordGoogleMaps").value = "";
           }
           
           var checkbox = document.getElementById('addressCorrect');
@@ -306,8 +315,8 @@
                 direccionMaps = new DireccionGoogleMap(numero_casa, calle, colonia, ciudad, estado,
                     pais, zip, latitud, longitud,
                     "C. Contadores 7242, Solidaridad 1, 88143 Nuevo Laredo, Tamps., México");
-                iniciarMap(27.5048394802915, -99.5479864197085);
-                //iniciarMap(direccionMaps.latitud, direccionMaps.longitud);
+                
+                iniciarMap(direccionMaps.latitud, direccionMaps.longitud);
                 console.log(near_place);
                 console.log(direccionMaps);
                 //console.log(JSON.stringify(near_place));

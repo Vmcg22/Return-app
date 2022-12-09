@@ -36,14 +36,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        return response()->json($request);
         $customer = new Customer();
 
-        $customer->contact = $request->contact;
+        $customer->contact = $request->contact; //John Roosvelt
+        $customer->email = $request->email; //john@gmail.com
+        $customer->codigo_pais = $request->codigo_pais; //+52
+        $customer->phone_number = $request->phone_number; //8673065369
+        $customer->address = $request->address; //C. Pino Suárez
         $customer->city = $request->city;
         $customer->state = $request->state;
         $customer->zip = $request->zip;
-        $customer->address = $request->address;
-        $customer->phone_number = $request->phone_number;
+        
         $customer->type = $request->type;
         $customer->credit_limit = $request->credit_limit;
         $customer->active = true;
