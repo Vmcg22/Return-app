@@ -24,8 +24,8 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="validationCustom02">Address</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Ingresa el Correo Electrónico..."
-                    required>
+                <input type="text" class="form-control" id="email" name="email"
+                    placeholder="Ingresa el Correo Electrónico..." required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -58,7 +58,7 @@
         <div class="form-row">
             <div class="col-md-9 mb-3">
                 <label>GeoLocation:</label>
-                <input type="text" class="form-control" id="search_input" placeholder="Type address..." />
+                <input type="text" class="form-control" id="searchInput" placeholder="Type address..." />
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -75,7 +75,7 @@
                         You must agree before submitting.
                     </div>
                 </div>
-            </div>      
+            </div>
 
             <div id="map">
 
@@ -84,19 +84,19 @@
         <br>
 
         <div class="form-row">
-            
+
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">Address</label>
-                <input type="text" class="form-control" id="addressGoogleMaps" name="addressGoogleMaps" placeholder="Calle Geolocalización..."
-                    required readonly>
+                <input type="text" class="form-control" id="addressGoogleMaps" name="addressGoogleMaps"
+                    placeholder="Calle Geolocalización..." required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid address.
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">Número</label>
-                <input type="text" class="form-control" id="numberGoogleMaps" name="numberGoogleMaps" placeholder="Número Geolocalización..."
-                    required readonly>
+                <input type="text" class="form-control" id="numberGoogleMaps" name="numberGoogleMaps"
+                    placeholder="Número Geolocalización..." required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid address.
                 </div>
@@ -104,8 +104,8 @@
 
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">Colonia</label>
-                <input type="text" class="form-control" id="colonyGoogleMaps" name="colonyGoogleMaps" placeholder="Colonia Geolocalización..."
-                    required readonly>
+                <input type="text" class="form-control" id="colonyGoogleMaps" name="colonyGoogleMaps"
+                    placeholder="Colonia Geolocalización..." required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid colony.
                 </div>
@@ -125,16 +125,16 @@
 
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">City</label>
-                <input type="text" class="form-control" id="cityGoogleMaps" name="cityGoogleMaps" placeholder="Ciudad Geolocalización..."
-                    required readonly>
+                <input type="text" class="form-control" id="cityGoogleMaps" name="cityGoogleMaps"
+                    placeholder="Ciudad Geolocalización..." required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid city.
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom04">State</label>
-                <input type="text" class="form-control" id="stateGoogleMaps" name="stateGoogleMaps" placeholder="Estado Geolocalización..."
-                    required readonly>
+                <input type="text" class="form-control" id="stateGoogleMaps" name="stateGoogleMaps"
+                    placeholder="Estado Geolocalización..." required readonly>
                 <div class="invalid-feedback">
                     Please provide a valid state.
                 </div>
@@ -179,19 +179,27 @@
             </div>
         </div>
 
+        <ul class="geo-data">
+            <li>Full Address: <span id="location"></span></li>
+            <li>Postal Code: <span id="postal_code"></span></li>
+            <li>Country: <span id="country"></span></li>
+            <li>Latitude: <span id="lat"></span></li>
+            <li>Longitude: <span id="lon"></span></li>
+        </ul>
+
         <!---
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" checked="checked" id="active" name="active" required>
-                                    <label class="form-check-label" for="invalidCheck">
-                                        ¿Estará Activo?
-                                    </label>
-                                    <div class="invalid-feedback">
-                                        You must agree before submitting.
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" checked="checked" id="active" name="active" required>
+                                        <label class="form-check-label" for="invalidCheck">
+                                            ¿Estará Activo?
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            You must agree before submitting.
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            --->
+                                --->
 
         <button class="btn btn-primary" type="submit">Guardar Datos</button>
     </form>
@@ -243,7 +251,7 @@
             });
         }
 
-        function on(){
+        function on() {
             console.log("Confirmé la dirección de Google Maps");
             console.log(direccionMaps.colonia);
 
@@ -254,10 +262,10 @@
             document.getElementById("cityGoogleMaps").value = direccionMaps.ciudad;
             document.getElementById("stateGoogleMaps").value = direccionMaps.estado;
             document.getElementById("countryGoogleMaps").value = direccionMaps.pais;
-            document.getElementById("geoCoordGoogleMaps").value = direccionMaps.latitud + ", " +direccionMaps.longitud;
-          }
-          
-          function off(){
+            document.getElementById("geoCoordGoogleMaps").value = direccionMaps.latitud + ", " + direccionMaps.longitud;
+        }
+
+        function off() {
             console.log("Limpio los campos que relleno con el API de Google Maps");
 
             document.getElementById("addressGoogleMaps").value = "";
@@ -268,80 +276,97 @@
             document.getElementById("stateGoogleMaps").value = "";
             document.getElementById("countryGoogleMaps").value = "";
             document.getElementById("geoCoordGoogleMaps").value = "";
-          }
-          
-          var checkbox = document.getElementById('addressCorrect');
-          
-          checkbox.addEventListener("change", comprueba, false);
-          
-          function comprueba(){
-            if(checkbox.checked){
+        }
+
+        var checkbox = document.getElementById('addressCorrect');
+
+        checkbox.addEventListener("change", comprueba, false);
+
+        function comprueba() {
+            if (checkbox.checked) {
                 on();
-            }else{
-               off();
+            } else {
+                off();
             }
-          }
+        }
 
         /*
             FUNCIONES GOOGLE MAPS
         */
 
-        var searchInput = 'search_input';
-        var direccionMaps;
+        function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 27.47629, lng: -99.51639},
+    zoom: 13
+  });
+  var input = document.getElementById('searchInput');
 
-        $(document).ready(function() {
-            var autocomplete;
-            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-                types: ['geocode'],
-                /*componentRestrictions: {
-                country: "USA"
-                }*/
-            });
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
 
-            google.maps.event.addListener(autocomplete, 'place_changed', function() {
-                var near_place = autocomplete.getPlace();
+  var infowindow = new google.maps.InfoWindow();
+  var marker = new google.maps.Marker({
+      map: map,
+      anchorPoint: new google.maps.Point(0, -29)
+  });
 
-                //var direccionMaps = new DireccionGoogleMap(7242, "contadores", "solidaridad", "nuevo laredo", "tamaulipas", "mexico", "88143", 27.502175, -99.55069, "C. Contadores 7242, Solidaridad 1, 88143 Nuevo Laredo, Tamps., México");
-                var numero_casa = near_place["address_components"][0]["short_name"];
-                var calle = near_place["address_components"][1]["short_name"];
-                var colonia = near_place["address_components"][2]["short_name"];
-                var ciudad = near_place["address_components"][3]["short_name"];
-                var estado = near_place["address_components"][4]["short_name"];
-                var pais = near_place["address_components"][5]["short_name"];
-                var zip = near_place["address_components"][6]["short_name"];
-                var longitud = near_place["geometry"]["viewport"]["Ia"]["hi"];
-                var latitud = near_place["geometry"]["viewport"]["Wa"]["hi"];
+  autocomplete.addListener('place_changed', function() {
+      infowindow.close();
+      marker.setVisible(false);
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+          window.alert("Autocomplete's returned place contains no geometry");
+          return;
+      }
 
-                direccionMaps = new DireccionGoogleMap(numero_casa, calle, colonia, ciudad, estado,
-                    pais, zip, latitud, longitud,
-                    "C. Contadores 7242, Solidaridad 1, 88143 Nuevo Laredo, Tamps., México");
-                
-                iniciarMap(direccionMaps.latitud, direccionMaps.longitud);
-                console.log(near_place);
-                console.log(direccionMaps);
-                //console.log(JSON.stringify(near_place));
-            });
-        });
+      // If the place has a geometry, then present it on a map.
+      if (place.geometry.viewport) {
+          map.fitBounds(place.geometry.viewport);
+      } else {
+          map.setCenter(place.geometry.location);
+          map.setZoom(17);
+      }
+      marker.setIcon(({
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(35, 35)
+      }));
+      marker.setPosition(place.geometry.location);
+      marker.setVisible(true);
+  
+      var address = '';
+      if (place.address_components) {
+          address = [
+            (place.address_components[0] && place.address_components[0].short_name || ''),
+            (place.address_components[1] && place.address_components[1].short_name || ''),
+            (place.address_components[2] && place.address_components[2].short_name || '')
+          ].join(' ');
+      }
+  
+      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+      infowindow.open(map, marker);
+    
+      // Location details
+      for (var i = 0; i < place.address_components.length; i++) {
+          if(place.address_components[i].types[0] == 'postal_code'){
+              document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
+          }
+          if(place.address_components[i].types[0] == 'country'){
+              document.getElementById('country').innerHTML = place.address_components[i].long_name;
+          }
+      }
+      document.getElementById('location').innerHTML = place.formatted_address;
+      document.getElementById('lat').innerHTML = place.geometry.location.lat();
+      document.getElementById('lon').innerHTML = place.geometry.location.lng();
+  });
+}
     </script>
 
     <script
-        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDcL8shIV5zZH3XYA1H6CjoH9MFUnzBD7s&callback=iniciarMap">
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDcL8shIV5zZH3XYA1H6CjoH9MFUnzBD7s&callback=initMap">
     </script>
 
-    @if (!$errors->isEmpty())
-        @if ($errors->has('post'))
-            <script>
-                $(function() {
-                    $('#createMdl').modal('show');
-                });
-            </script>
-        @else
-            <script>
-                $(function() {
-                    $('#editMdl').modal('show');
-                });
-            </script>
-        @endif
-    @endif
 
 @endpush
