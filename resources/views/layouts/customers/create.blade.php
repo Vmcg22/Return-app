@@ -159,6 +159,18 @@
         </div>
 
         <div class="form-row">
+            <div class="col-md-12 mb-3">
+                <label for="validationCustom02">Complete Address</label>
+                <input type="text" class="form-control" id="completeAddress" name="completeAddress"
+                    placeholder="Dirección Completa..." readonly required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="validationCustom01">Type</label>
                 <select class="custom-select my-1 mr-sm-2" id="type" name="type">

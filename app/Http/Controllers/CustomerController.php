@@ -36,17 +36,23 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request);
+        //return response()->json($request);
         $customer = new Customer();
 
-        $customer->contact = $request->contact; //John Roosvelt
-        $customer->email = $request->email; //john@gmail.com
-        $customer->codigo_pais = $request->codigo_pais; //+52
+        $customer->contact = $request->contact; //Snow Shadow
+        $customer->email = $request->email; //snow.shadow@gmail.com
+        $customer->code_country = $request->codigo_pais; //+52
         $customer->phone_number = $request->phone_number; //8673065369
-        $customer->address = $request->address; //C. Pino Suárez
-        $customer->city = $request->city;
-        $customer->state = $request->state;
-        $customer->zip = $request->zip;
+
+        //Datos Google Maps
+        $customer->address = $request->addressGoogleMaps; //Avenida Reforma
+        $customer->number = $request->numberGoogleMaps; //2007                              -> Pend. de crear columna en BD
+        $customer->colony = $request->colonyGoogleMaps; //Infonavit Fundadores              -> Pend. de crear columna en BD
+        $customer->city = $request->cityGoogleMaps; //Nuevo Laredo
+        $customer->state = $request->stateGoogleMaps; //Tamaulipas
+        $customer->zip = $request->zipGoogleMaps; //88275
+        $customer->complete_address = $request->completeAddress; //Avenida Reforma          -> Pend. de crear columna en BD  
+        $customer->geoCoord = $request->geoCoordGoogleMaps; //27.45331, -99.51580399999999  -> Pend. de crear columna en BD
         
         $customer->type = $request->type;
         $customer->credit_limit = $request->credit_limit;
@@ -57,7 +63,7 @@ class CustomerController extends Controller
        alert()->success('Cliente guardado correctamente');
 
        return redirect()->route('customers.index');
-        return response()->json($request);
+        //return response()->json($request);
     }
 
     /**

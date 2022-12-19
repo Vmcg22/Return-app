@@ -17,14 +17,22 @@ class CreateCustomersTable extends Migration
             $table->id();
 
             $table->string("contact");
-            $table->boolean("active");
+            $table->string("email");
+            $table->string("code_country");
+            $table->string("phone_number");
+            $table->string("phone_number_secondary")->nullable();
+
+            $table->boolean("active");    
+            $table->string("address");
+            $table->string("number");
+            $table->string("colony");
             $table->string("city");
             $table->string("state");
             $table->integer("zip");
-            $table->string("address");
+            $table->string("complete_address");
+            $table->string("geoCoord");
             $table->string("address_secondary")->nullable();
-            $table->string("phone_number");
-            $table->string("phone_number_secondary")->nullable();
+            
             $table->string("type");
             $table->float("credit_limit");
 

@@ -11,6 +11,8 @@ function on() {
     document.getElementById("stateGoogleMaps").value = direccionMaps.estado;
     document.getElementById("countryGoogleMaps").value = direccionMaps.pais;
     document.getElementById("geoCoordGoogleMaps").value = direccionMaps.latitud + ", " + direccionMaps.longitud;
+    document.getElementById("completeAddress").value = direccionMaps.direccion_completa;
+    window.scroll(0, 300);
 }
 
 function off() {
