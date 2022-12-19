@@ -14,15 +14,22 @@ class Customer extends Model
 
         //Atributos del modelo que tendremos permitido hacer el CRUD
         protected $fillable = [
+
+            "contact",
+            "email",
+            "code_country",
+            "phone_number",
+            "phone_number_secondary",
             "active",
+
+            "address",
+            "number",
+            "colony",
             "city",
             "state",
             "zip",
-            "address_first",
-            "address_secondary",
-            "contact",
-            "phone_number",
-            "phone_number_secondary",
+            "geoCoord",
+
             "type",
             "credit_limit"
 
