@@ -16,16 +16,23 @@
         <div class="form-row">
             <div class="col-md-3 mb-3">
                 <label for="validationCustom01">Contact</label>
-                <input type="text" class="form-control" id="contact" name="contact" placeholder="Ingresa el Nombre..."
+                <input type="text" class="form-control {{$errors->has('contact') ? 'is-invalid' : ''}}" id="contact" name="contact" placeholder="Ingresa el Nombre..."
                     required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+
+                @if ($errors->has('contact'))
+                    <span class="text-danger"> {{ $errors->first('contact') }} </span>
+                @endif
             </div>
+
             <div class="col-md-4 mb-3">
                 <label for="validationCustom02">Address</label>
-                <input type="text" class="form-control" id="email" name="email"
+                <input type="text" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" id="email" name="email"
                     placeholder="Ingresa el Correo Electrónico..." required>
+                
+                @if ($errors->has('email'))
+                    <span class="text-danger"> {{ $errors->first('email') }} </span>
+                @endif
+
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -47,8 +54,12 @@
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom02">Phone Nummber</label>
-                <input type="text" class="form-control" id="phone_number" name="phone_number"
+                <input type="text" class="form-control {{$errors->has('phone_number') ? 'is-invalid' : ''}}" id="phone_number" name="phone_number"
                     placeholder="Ingresa el Número de Teléfono..." required>
+
+                @if ($errors->has('phone_number'))
+                    <span class="text-danger"> {{ $errors->first('phone_number') }} </span>
+                @endif
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -87,37 +98,41 @@
 
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">Address</label>
-                <input type="text" class="form-control" id="addressGoogleMaps" name="addressGoogleMaps"
+                <input type="text" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" id="addressGoogleMaps" name="addressGoogleMaps"
                     placeholder="Calle Geolocalización..." required readonly>
-                <div class="invalid-feedback">
-                    Please provide a valid address.
-                </div>
+                
+                @if ($errors->has('address'))
+                    <span class="text-danger"> {{ $errors->first('address') }} </span>
+                @endif
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">Número</label>
-                <input type="text" class="form-control" id="numberGoogleMaps" name="numberGoogleMaps"
+                <input type="text" class="form-control {{$errors->has('number') ? 'is-invalid' : ''}}" id="numberGoogleMaps" name="numberGoogleMaps"
                     placeholder="Número Geolocalización..." required readonly>
-                <div class="invalid-feedback">
-                    Please provide a valid address.
-                </div>
+                
+                @if ($errors->has('number'))
+                    <span class="text-danger"> {{ $errors->first('number') }} </span>
+                @endif
             </div>
 
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">Colonia</label>
-                <input type="text" class="form-control" id="colonyGoogleMaps" name="colonyGoogleMaps"
+                <input type="text" class="form-control {{$errors->has('colony') ? 'is-invalid' : ''}}" id="colonyGoogleMaps" name="colonyGoogleMaps"
                     placeholder="Colonia Geolocalización..." required readonly>
-                <div class="invalid-feedback">
-                    Please provide a valid colony.
-                </div>
+
+                @if ($errors->has('colony'))
+                    <span class="text-danger"> {{ $errors->first('colony') }} </span>
+                @endif
             </div>
 
             <div class="col-md-3 mb-3">
                 <label for="validationCustom05">Zip</label>
-                <input type="text" class="form-control" id="zipGoogleMaps" name="zipGoogleMaps"
+                <input type="text" class="form-control {{$errors->has('zip') ? 'is-invalid' : ''}}" id="zipGoogleMaps" name="zipGoogleMaps"
                     placeholder="ZIP Geolocalización..." required readonly>
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
+
+                @if ($errors->has('zip'))
+                    <span class="text-danger"> {{ $errors->first('zip') }} </span>
+                @endif
             </div>
         </div>
 
@@ -125,47 +140,52 @@
 
             <div class="col-md-3 mb-3">
                 <label for="validationCustom03">City</label>
-                <input type="text" class="form-control" id="cityGoogleMaps" name="cityGoogleMaps"
+                <input type="text" class="form-control {{$errors->has('city') ? 'is-invalid' : ''}}" id="cityGoogleMaps" name="cityGoogleMaps"
                     placeholder="Ciudad Geolocalización..." required readonly>
-                <div class="invalid-feedback">
-                    Please provide a valid city.
-                </div>
+
+                @if ($errors->has('city'))
+                    <span class="text-danger"> {{ $errors->first('city') }} </span>
+                @endif
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationCustom04">State</label>
-                <input type="text" class="form-control" id="stateGoogleMaps" name="stateGoogleMaps"
+                <input type="text" class="form-control {{$errors->has('state') ? 'is-invalid' : ''}}" id="stateGoogleMaps" name="stateGoogleMaps"
                     placeholder="Estado Geolocalización..." required readonly>
-                <div class="invalid-feedback">
-                    Please provide a valid state.
-                </div>
+
+                @if ($errors->has('state'))
+                    <span class="text-danger"> {{ $errors->first('state') }} </span>
+                @endif
             </div>
             <div class="col-md-2 mb-3">
                 <label for="validationCustom05">País</label>
-                <input type="text" class="form-control" id="countryGoogleMaps" name="countryGoogleMaps"
+                <input type="text" class="form-control {{$errors->has('contact') ? 'is-invalid' : ''}}" id="countryGoogleMaps" name="countryGoogleMaps"
                     placeholder="País Geolocalización..." required readonly>
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
+                
+                @if ($errors->has('contact'))
+                    <span class="text-danger"> {{ $errors->first('contact') }} </span>
+                @endif
             </div>
 
             <div class="col-md-4 mb-3">
                 <label for="validationCustom05">Coordenadas Geográficas (Lat,Long)</label>
-                <input type="text" class="form-control" id="geoCoordGoogleMaps" name="geoCoordGoogleMaps"
+                <input type="text" class="form-control {{$errors->has('geoCoord') ? 'is-invalid' : ''}}" id="geoCoordGoogleMaps" name="geoCoordGoogleMaps"
                     placeholder="Coordenadas Geolocalización" required readonly>
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
+
+                @if ($errors->has('geoCoord'))
+                    <span class="text-danger"> {{ $errors->first('geoCoord') }} </span>
+                @endif
             </div>
         </div>
 
         <div class="form-row">
             <div class="col-md-12 mb-3">
                 <label for="validationCustom02">Complete Address</label>
-                <input type="text" class="form-control" id="completeAddress" name="completeAddress"
+                <input type="text" class="form-control {{$errors->has('complete_address') ? 'is-invalid' : ''}}" id="completeAddress" name="completeAddress"
                     placeholder="Dirección Completa..." readonly required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+                
+                @if ($errors->has('complete_address'))
+                    <span class="text-danger"> {{ $errors->first('complete_address') }} </span>
+                @endif
             </div>
 
         </div>
@@ -211,6 +231,16 @@
     <script>
         var direccionMaps;
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('input[type=text]').forEach( node => node.addEventListener('keypress', e => {
+        if(e.keyCode == 13) {
+          e.preventDefault();
+        }
+      }))
+    });
+  </script>
 
     <script
         src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDcL8shIV5zZH3XYA1H6CjoH9MFUnzBD7s&callback=initMap">
